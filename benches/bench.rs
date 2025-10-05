@@ -87,13 +87,12 @@ fn f32_fastrand(b: &mut Bencher) {
             // AArch64:
             // 0.344ns/iter: new f32_inclusive().
             // 0.619ns/iter: new f32().
-            // 
+            // 0.451ns/iter: old f32().
             // 
             sum0 += rng.f32();
             sum1 += rng.f32();
             sum2 += rng.f32();
             sum3 += rng.f32();
-
         }
         sum0 + sum1 + sum2 + sum3
     })

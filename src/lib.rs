@@ -396,12 +396,9 @@ impl Rng {
     /// to that if inclusive range is acceptable.
     #[inline]
     pub fn f32(&mut self) -> f32 {
-        loop {
-            let x = self.f32_inclusive();
-            if x < 1.0 {
-                return x;
-            }
-        }
+        let b = 32;
+        let f = core::f32::MANTISSA_DIGITS - 1;
+        f32::from_bits((1 << (b - 2)) - (1 << f) + (self.u32(..) >> (b - f))) - 1.0
     }
 
     /// Generates a random `f64` in range `0..=1`.
